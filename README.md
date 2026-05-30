@@ -210,6 +210,4 @@ This project demonstrates:
 
 ## Author
 
-James Alwin
-
-SplitMate – Shared moments, fairly settled.
+James Alwin  
