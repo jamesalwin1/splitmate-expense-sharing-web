@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>SplitMate</title>
+
+    <link rel="stylesheet" href="/static/style.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body>
+
+<header class="navbar">
+
+    <div class="logo">
+        SplitMate
+    </div>
+
+    <div class="navbar-tagline">
+        Shared moments, fairly settled.
+    </div>
+
+</header>
+
+<div class="container">
+
+    <div class="hero">
+
+        <h1>Expense Sharing System</h1>
+
+        <p>
+            Manage expenses, track balances and settle payments efficiently.
+        </p>
+
+    </div>
+
+    <!-- Add Expense -->
+
+    <div class="card">
+
+        <h2>Add Expense</h2>
+
+        <form action="/add_expense"
+              method="post">
+
+            <label>Payer</label>
+
+            <select name="payer">
+
+                {% for friend in friends %}
+
+                <option value="{{friend}}">
+                    {{friend}}
+                </option>
+
+                {% endfor %}
+
+            </select>
+
+            <label>Amount</label>
+
+            <input type="number"
+                   name="amount"
+                   required>
+
+            <label>Split Type</label>
+
+            <select name="split_type">
+
+                <option value="equal">
+                    Equal Split
+                </option>
+
+                <option value="custom">
+                    Custom Split
+                </option>
+
+            </select>
+
+            <label>Beneficiaries (comma separated)</label>
+
+            <input type="text"
+                   name="beneficiaries"
+                   placeholder="James,Harish,Kamal">
+
+            <label>Custom Split</label>
+
+            <input type="text"
+                   name="custom_split"
+                   placeholder="James:500,Harish:300,Kamal:200">
+
+            <button type="submit">
+                Add Expense
+            </button>
+
+        </form>
+
+    </div>
+
+    <!-- Balances -->
+
+    <div class="card">
+
+        <h2>Balance Overview</h2>
+
+        <table>
+
+            <tr>
+
+                <th>Friend</th>
+
+                <th>Status</th>
+
+            </tr>
+
+            {% for name, balance in balances.items() %}
+
+            <tr>
+
+                <td>{{name}}</td>
+
+                <td class="
+                {% if 'Receive' in balance %}
+                receive
+                {% elif 'Owes' in balance %}
+                owe
+                {% else %}
+                settled
+                {% endif %}
+                ">
+
+                    {{balance}}
+
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+        </table>
+
+    </div>
+
+    <!-- Expense History -->
+
+    <div class="card">
+
+        <h2>Expense History</h2>
+
+        <table>
+
+            <tr>
+
+                <th>Payer</th>
+
+                <th>Amount</th>
+
+                <th>Beneficiaries</th>
+
+            </tr>
+
+            {% for expense in expenses %}
+
+            <tr>
+
+                <td>{{expense.payer}}</td>
+
+                <td>₹{{expense.amount}}</td>
+
+                <td>{{expense.beneficiaries}}</td>
+
+            </tr>
+
+            {% endfor %}
+
+        </table>
+
+    </div>
+
+    <!-- Settlements -->
+
+    <div class="card">
+
+        <h2>Suggested Settlements</h2>
+
+        {% if transactions %}
+
+            {% for t in transactions %}
+
+            <div class="settlement-card">
+
+                <span class="debtor">
+                    {{t.debtor}}
+                </span>
+
+                <span>
+                    →
+                </span>
+
+                <span class="creditor">
+                    {{t.creditor}}
+                </span>
+
+                <span class="amount">
+                    ₹{{"%.2f"|format(t.amount)}}
+                </span>
+
+            </div>
+
+            {% endfor %}
+
+        {% else %}
+
+            <p>
+                Everyone is settled.
+            </p>
+
+        {% endif %}
+
+    </div>
+
+    <!-- Analytics -->
+
+    <div class="card">
+
+        <h2>Balance Analytics</h2>
+
+        <canvas id="balanceChart"></canvas>
+
+    </div>
+
+</div>
+
+<footer>
+
+    SplitMate © 2026
+
+</footer>
+
+<script>
+
+const labels = [
+
+{% for name in balances.keys() %}
+"{{name}}",
+{% endfor %}
+
+];
+
+const values = [
+
+{% for value in balances.values() %}
+
+{% if "Receive" in value or "Owes" in value %}
+{{value.split()[-1]}},
+{% else %}
+0,
+{% endif %}
+
+{% endfor %}
+
+];
+
+new Chart(
+
+document.getElementById("balanceChart"),
+
+{
+    type:"bar",
+
+    data:{
+
+        labels:labels,
+
+        datasets:[{
+
+            label:"Balance",
+
+            data:values
+
+        }]
+    },
+
+    options:{
+        responsive:true
+    }
+
+});
+
+</script>
+
+</body>
+
+</html>

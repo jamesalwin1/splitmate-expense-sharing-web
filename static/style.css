@@ -1,0 +1,321 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    font-family:'Segoe UI',sans-serif;
+
+    background:#f5f7fb;
+
+    color:#1e293b;
+}
+
+/* NAVBAR */
+
+.navbar{
+
+    background:
+    linear-gradient(
+        90deg,
+        #071330,
+        #0b1d47
+    );
+
+    height:80px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:0 40px;
+
+    color:white;
+}
+
+.logo{
+
+    font-size:34px;
+
+    font-weight:700;
+
+    color:#38bdf8;
+}
+
+.navbar-tagline{
+
+    color:#cbd5e1;
+
+    font-size:15px;
+}
+
+/* CONTAINER */
+
+.container{
+
+    max-width:1100px;
+
+    margin:auto;
+
+    padding:30px;
+}
+
+/* HERO */
+
+.hero{
+
+    text-align:center;
+
+    margin-bottom:25px;
+}
+
+.hero h1{
+
+    font-size:40px;
+
+    color:#0f172a;
+
+    margin-bottom:10px;
+}
+
+.hero p{
+
+    color:#64748b;
+
+    font-size:17px;
+}
+
+/* CARDS */
+
+.card{
+
+    background:white;
+
+    padding:25px;
+
+    margin-bottom:25px;
+
+    border-radius:18px;
+
+    box-shadow:
+    0 8px 20px rgba(0,0,0,.08);
+}
+
+.card h2{
+
+    margin-bottom:20px;
+
+    color:#0f172a;
+}
+
+/* FORM */
+
+form{
+
+    display:flex;
+
+    flex-direction:column;
+}
+
+label{
+
+    margin-top:12px;
+
+    font-weight:600;
+}
+
+input,
+select{
+
+    margin-top:6px;
+
+    padding:12px;
+
+    border:1px solid #cbd5e1;
+
+    border-radius:10px;
+}
+
+input:focus,
+select:focus{
+
+    outline:none;
+
+    border-color:#2563eb;
+
+    box-shadow:
+    0 0 0 3px rgba(37,99,235,.15);
+}
+
+button{
+
+    margin-top:20px;
+
+    background:#2563eb;
+
+    color:white;
+
+    border:none;
+
+    padding:14px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    font-weight:600;
+
+    transition:.3s;
+}
+
+button:hover{
+
+    background:#1d4ed8;
+}
+
+/* TABLES */
+
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+}
+
+th{
+
+    background:#2563eb;
+
+    color:white;
+
+    text-align:left;
+
+    padding:14px;
+}
+
+td{
+
+    padding:14px;
+
+    border-bottom:
+    1px solid #e2e8f0;
+}
+
+tr:hover{
+
+    background:#f8fafc;
+}
+
+/* STATUS COLORS */
+
+.receive{
+
+    color:#16a34a;
+
+    font-weight:700;
+}
+
+.owe{
+
+    color:#dc2626;
+
+    font-weight:700;
+}
+
+.settled{
+
+    color:#64748b;
+
+    font-weight:700;
+}
+
+/* SETTLEMENTS */
+
+.settlement-card{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:15px;
+
+    background:#f8fafc;
+
+    border-left:
+    4px solid #2563eb;
+
+    border-radius:10px;
+
+    margin-bottom:10px;
+}
+
+.creditor{
+
+    color:#16a34a;
+
+    font-weight:700;
+}
+
+.debtor{
+
+    color:#dc2626;
+
+    font-weight:700;
+}
+
+.amount{
+
+    font-weight:700;
+}
+
+/* CHART */
+
+canvas{
+
+    max-height:400px;
+}
+
+/* FOOTER */
+
+footer{
+
+    text-align:center;
+
+    padding:25px;
+
+    color:#64748b;
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+    .navbar{
+
+        flex-direction:column;
+
+        justify-content:center;
+
+        gap:8px;
+
+        height:100px;
+    }
+
+    .hero h1{
+
+        font-size:30px;
+    }
+
+    table{
+
+        display:block;
+
+        overflow-x:auto;
+    }
+}
