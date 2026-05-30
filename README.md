@@ -149,8 +149,6 @@ James:500,Harish:300,Kamal:200
 
 ## Screenshots
 
-## Screenshots
-
 ### Dashboard
 ![Dashboard](screenshots/dashboard.png)
 
